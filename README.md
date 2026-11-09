@@ -10,8 +10,11 @@ built on Databricks with Delta Lake and Unity Catalog in a Medallion architectur
 | Layer | Notebook | What it does |
 |---|---|---|
 | Bronze | `notebooks/01_bronze_ingest.py` | Loads raw CSV files from a Unity Catalog volume into Delta tables |
-| Silver | *planned* | Cleaning and standardisation of product names, model numbers and prices |
+| Silver | `notebooks/02_silver_clean.py` | Cleans names, extracts model numbers, parses prices, validates a data contract (DQ checks + Delta constraints) |
 | Gold | *planned* | Blocking, similarity features, Spark MLlib classifier, precision / recall / F1 |
+
+Reusable logic lives in `src/er_pipeline/` (`cleaning.py` – Spark column expressions for standardisation,
+`quality.py` – data quality checks) and is imported by the notebooks.
 
 ## Dataset
 
